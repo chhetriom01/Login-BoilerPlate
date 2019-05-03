@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-
+import { Link } from 'react-router-dom';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import {
@@ -66,6 +66,7 @@ export function HomePage({
           content="A React.js Boilerplate application homepage"
         />
       </Helmet>
+      
       <div>
         <CenteredSection>
           <H2>
@@ -76,7 +77,7 @@ export function HomePage({
           </p>
         </CenteredSection>
         <Section>
-          <H2>
+               <H2>
             <FormattedMessage {...messages.trymeHeader} />
           </H2>
           <Form onSubmit={onSubmitForm}>

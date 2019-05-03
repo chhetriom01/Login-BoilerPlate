@@ -17,6 +17,7 @@ import LoginContainer from 'containers/LoginContainer';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import DashBoard from 'containers/DashBoard'
 
 import GlobalStyle from '../../global-styles';
 
@@ -43,6 +44,7 @@ export default function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
         <Route path="/login" component={LoginContainer} />
+        <Route path="/path" component={DashBoard} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
