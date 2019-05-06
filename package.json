@@ -79,6 +79,7 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
+    "jwt-decode": "^2.2.0",
     "lodash": "4.17.11",
     "minimist": "1.2.0",
     "prop-types": "15.7.2",
@@ -94,6 +95,8 @@
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
     "sanitize.css": "8.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.86.0",
     "styled-components": "4.2.0"
   },
   "devDependencies": {

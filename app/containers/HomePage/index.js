@@ -68,6 +68,8 @@ export function HomePage({
       </Helmet>
       
       <div>
+      
+      
         <CenteredSection>
           <H2>
             <FormattedMessage {...messages.startProjectHeader} />
@@ -95,6 +97,8 @@ export function HomePage({
               />
             </label>
           </Form>
+          <Link to="/login"><button>LoginPage</button></Link>
+          
           <ReposList {...reposListProps} />
         </Section>
       </div>

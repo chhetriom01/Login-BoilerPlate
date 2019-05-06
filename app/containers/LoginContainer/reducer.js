@@ -4,13 +4,14 @@
  *
  */
 import produce from 'immer';
-import { LOGIN_REQUESTING,LOGIN_SUCCESS,LOGIN_ERROR } from './constants';
+import { LOGIN_REQUESTING, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
 import { retry } from '@redux-saga/core/effects';
 import payload from './saga';
 
 export const initialState = {
   Loading: false,
   data: [],
+  payload: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -19,9 +20,14 @@ const loginContainerReducer = (state = initialState, action) => {
     case 'LOGIN_REQUESTING':
       return { ...state, Loading: true };
     case 'LOGIN_SUCCESS':
+      // localStorage.setItem('token', action.json.data.token);
+      // console.log(action);
       return { action, Loading: false };
+      
+
     case 'LOGIN_ERROR':
-      return {...state,error:payload};
+      console.log(action.payload, '>> fron reducers');
+      return { error: action.payload };
     default:
       return state;
   }

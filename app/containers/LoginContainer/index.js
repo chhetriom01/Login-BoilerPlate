@@ -1,9 +1,3 @@
-/**
- *
- * LoginContainer
- *
- */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -19,6 +13,8 @@ import bindActionCreators from 'redux';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
+import   './login.css';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -56,8 +52,34 @@ class LoginContainer extends Component {
   };
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="ui input focus"> 
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Username </label>
+            <input
+              required
+              type="text"
+              name="username"
+              value={this.state.credentials.username}
+              onChange={this.onInputChange}
+              placeholder="Enter the username"
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Password</label>
+            <input
+              required
+              type="password"
+              name="password"
+              value={this.state.credentials.password}
+              onChange={this.onInputChange}
+              placeholder="Enter the password"
+            />
+          </Form.Field>
+          
+          <Button type="submit">Submit</Button>
+        </Form>
+        {/* <form onSubmit={this.handleSubmit}>
           <input
             required
             type="text"
@@ -77,9 +99,10 @@ class LoginContainer extends Component {
           />
           <br />
           <button>Login</button>
-        </form>
-        <button onClick={this.resetvalue}>Reset</button>
+        </form> */}
+        {/* <button onClick={this.resetvalue}>Reset</button> */}
       </div>
+      // <Route path="/path" component={DashBoard} />
     );
   }
 }
@@ -107,5 +130,5 @@ const withSaga = injectSaga({ key: 'LoginContainer', saga });
 export default compose(
   withReducer,
   withSaga,
-   connect(),
+  connect(),
 )(LoginContainer);
