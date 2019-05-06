@@ -14,7 +14,8 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
-import   './login.css';
+import { Link, browserHistory } from 'react-router';
+import { Redirect } from 'react-router-dom';
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -23,17 +24,20 @@ class LoginContainer extends Component {
       credentials: {
         username: 'superadmin',
         password: 'superadmin@123',
+        loggedIn : false
       },
     };
   }
   handleSubmit = e => {
     e.preventDefault();
-    // const credentials = {
-    //   username: this.state.credentials.username,
-    //   password: this.state.credentials.password,
-    // };
-    // this.props.login(this.state.credentials);
     this.props.dispatch(loginRequest(this.state.credentials));
+    const { username, password } = this.state;
+    if (username === 'superadmin' && password === 'superadmin@123') {
+      localStorage.getItem('token')
+      this.setState({
+        loggedIn: true
+      });
+    }
   };
   onInputChange = e => {
     const field = event.target.name;
@@ -51,8 +55,12 @@ class LoginContainer extends Component {
     });
   };
   render() {
+    if (this.state.loggedIn) {
+      return <Redirect to="/path" />;
+    }
+
     return (
-      <div className="ui input focus"> 
+      <div className="ui input focus">
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Username </label>
@@ -76,12 +84,10 @@ class LoginContainer extends Component {
               placeholder="Enter the password"
             />
           </Form.Field>
-          
+
           <Button type="submit">Submit</Button>
           <Button onClick={this.resetvalue}>Reset</Button>
         </Form>
-       
-        
       </div>
       // <Route path="/path" component={DashBoard} />
     );
@@ -111,5 +117,8 @@ const mapStateToProps = createStructuredSelector({
 export default compose(
   withReducer,
   withSaga,
-  connect(mapStateToProps,null),
+  connect(
+    mapStateToProps,
+    null,
+  ),
 )(LoginContainer);

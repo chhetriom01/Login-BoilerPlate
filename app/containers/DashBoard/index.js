@@ -21,10 +21,22 @@ import messages from './messages';
 import { Menu, Segment } from 'semantic-ui-react';
 import { push } from 'connected-react-router';
 import NavBar from './navbar'
+import { Redirect , Link} from 'react-router-dom';
 
 
 
 class DashBoard extends React.Component {
+  constructor(props){
+    super(props)
+    const token =localStorage.getItem('token')
+    let loggedIn = true
+    if(token == null) {
+      loggedIn =false
+    }
+    this.state ={
+      loggedIn
+    }
+  }
   state = { activeItem: 'home' };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -38,6 +50,11 @@ class DashBoard extends React.Component {
   //   return {this.props.}
   // }
   render() {
+
+    if(this.state.loggedIn ===false){
+      return <Redirect to ='/' />
+
+    }
     const { activeItem } = this.state;
     return (
       <div>

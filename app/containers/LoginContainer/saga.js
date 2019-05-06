@@ -17,28 +17,24 @@ function* fetchData(action) {
     });
 
     yield put({ type: 'LOGIN_SUCCESS', json: auth });
-    
+    // varlocalStorage.setItem('TOKEN', auth.data.token);
     localStorage.setItem('token', auth.data.token);
     // console.log(auth.data.token);
     const decoded = jwt(localStorage.getItem('token'));
-    console.log(decoded.user);   
+    // console.log(decoded);   
     yield put(push('/path'));
 
-    // console.log(auth.data.token);
+    console.log(auth.data.userInfo.active);
   } catch (error) {
     console.log(error, 'from saga');
     yield put({ type: 'LOGIN_ERROR', payload: error });
   }
 }
 
-function* actionLoginWatcher() {
+function* actionWatcher() {
   yield takeLatest('LOGIN_REQUESTING', fetchData);
 }
 
-function* actionlogoutWatcher() {
-  yield takeLatest('LOGOUT_REQUESTING', fetchData);
-}
-
 export default function* rootsaga() {
-  yield all([actionLoginWatcher()],[actionlogoutWatcher()]);
+  yield all([actionWatcher()]);
 }
