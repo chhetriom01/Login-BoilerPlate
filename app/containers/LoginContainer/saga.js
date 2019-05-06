@@ -21,7 +21,7 @@ function* fetchData(action) {
     localStorage.setItem('token', auth.data.token);
     // console.log(auth.data.token);
     const decoded = jwt(localStorage.getItem('token'));
-    // console.log(decoded.user.username);   
+    console.log(decoded.user);   
     yield put(push('/path'));
 
     // console.log(auth.data.token);
@@ -31,10 +31,14 @@ function* fetchData(action) {
   }
 }
 
-function* actionWatcher() {
+function* actionLoginWatcher() {
   yield takeLatest('LOGIN_REQUESTING', fetchData);
 }
 
+function* actionlogoutWatcher() {
+  yield takeLatest('LOGOUT_REQUESTING', fetchData);
+}
+
 export default function* rootsaga() {
-  yield all([actionWatcher()]);
+  yield all([actionLoginWatcher()],[actionlogoutWatcher()]);
 }

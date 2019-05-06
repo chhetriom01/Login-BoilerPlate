@@ -18,30 +18,56 @@ import makeSelectDashBoard from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import SideBar from '../../components/SideBar/';
-import * as jwt from 'jwt-decode';
-import { Sidebar, Checkbox, Form } from 'semantic-ui-react';
+import { Menu, Segment } from 'semantic-ui-react';
+import { push } from 'connected-react-router';
+import NavBar from './navbar'
 
-export function DashBoard() {
-  useInjectReducer({ key: 'dashBoard', reducer });
-  useInjectSaga({ key: 'dashBoard', saga });
 
-  // const decoded = jwt(localStorage.getItem('token'));
-  //   console.log(decoded.user.username);   
-  return (
-    // <a href="#about">Logout</a>
-    <div className="ui sidebar inverted vertical menu">
-    <a className="item">
-      1
-    </a>
-    <a className="item">
-      2
-    </a>
-    <a className="item">
-      3
-    </a>
-  </div>
-  );
+
+class DashBoard extends React.Component {
+  state = { activeItem: 'home' };
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  handleLogout = () => {
+    localStorage.removeItem('token');
+    this.props.dispatch(push('/login'));
+  };
+
+  // handleProfile =() => {
+  //   return {this.props.}
+  // }
+  render() {
+    const { activeItem } = this.state;
+    return (
+      <div>
+        <Menu pointing secondary>
+          <Menu.Item
+            name="home"
+            active={activeItem === 'home'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="messages"
+            active={activeItem === 'messages'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            name="Profile"
+            active={activeItem === 'profile'}
+            onClick={this.handleProfile}
+          />
+          <Menu.Menu position="right">
+            <Menu.Item
+              name="logout"
+              active={activeItem === 'logout'}
+              onClick={this.handleLogout}
+            />
+          </Menu.Menu>
+        </Menu>
+      </div>
+    );
+  }
 }
 
 DashBoard.propTypes = {

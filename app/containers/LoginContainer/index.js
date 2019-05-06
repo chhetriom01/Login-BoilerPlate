@@ -78,29 +78,10 @@ class LoginContainer extends Component {
           </Form.Field>
           
           <Button type="submit">Submit</Button>
+          <Button onClick={this.resetvalue}>Reset</Button>
         </Form>
-        {/* <form onSubmit={this.handleSubmit}>
-          <input
-            required
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.onInputChange}
-            placeholder="Enter the username"
-          />
-          <br />
-          <input
-            required
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.onInputChange}
-            placeholder="Enter the password"
-          />
-          <br />
-          <button>Login</button>
-        </form> */}
-        {/* <button onClick={this.resetvalue}>Reset</button> */}
+       
+        
       </div>
       // <Route path="/path" component={DashBoard} />
     );
@@ -118,9 +99,9 @@ const withSaga = injectSaga({ key: 'LoginContainer', saga });
 //   login: credentials => dispatch(loginRequest(credentials)),
 // });
 
-// const mapStateToProps = createStructuredSelector({
-//   loginContainer: makeSelectLoginContainer(),
-// });
+const mapStateToProps = createStructuredSelector({
+  loginContainer: makeSelectLoginContainer(),
+});
 
 // const withConnect = connect(
 //   null,
@@ -130,5 +111,5 @@ const withSaga = injectSaga({ key: 'LoginContainer', saga });
 export default compose(
   withReducer,
   withSaga,
-  connect(),
+  connect(mapStateToProps,null),
 )(LoginContainer);

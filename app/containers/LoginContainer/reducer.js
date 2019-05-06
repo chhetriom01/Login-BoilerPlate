@@ -23,11 +23,13 @@ const loginContainerReducer = (state = initialState, action) => {
       // localStorage.setItem('token', action.json.data.token);
       // console.log(action);
       return { action, Loading: false };
-      
 
     case 'LOGIN_ERROR':
       console.log(action.payload, '>> fron reducers');
       return { error: action.payload };
+
+      case 'LOGOUT':
+      return null;
     default:
       return state;
   }
