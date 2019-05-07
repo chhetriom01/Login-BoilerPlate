@@ -20,17 +20,12 @@ class NavBar extends React.Component {
       loggedIn,
     };
   }
-  handleProfile = () => {
-    return {}
-  };
-  
 
   handleLogout = () => {
     localStorage.removeItem('token');
     this.props.dispatch(push('/'));
   };
 
-  
   render() {
     if (this.state.loggedIn === false) {
       return <Redirect to="/" />;
@@ -40,25 +35,30 @@ class NavBar extends React.Component {
       <div>
         <Menu pointing secondary>
           <Menu.Item
-          as={Link} to="/dashboard"
+            as={Link}
+            to="/dashboard"
             name="home"
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-          as={Link} to="/testomonial"
-          name="home"
+            as={Link}
+            to="/testomonial"
+            name="home"
             name="Testimonial"
             active={activeItem === 'Testimonial'}
             onClick={this.handleTesto}
           />
           <Menu.Item
+              as={Link}
+              to="/profile"
             name="Profile"
             active={activeItem === 'profile'}
             onClick={this.handleProfile}
           />
           <Menu.Menu position="right">
             <Menu.Item
+            
               name="logout"
               active={activeItem === 'logout'}
               onClick={this.handleLogout}

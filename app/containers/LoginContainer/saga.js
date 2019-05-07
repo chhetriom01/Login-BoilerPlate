@@ -20,7 +20,7 @@ function* fetchData(action) {
     // varlocalStorage.setItem('TOKEN', auth.data.token);
     localStorage.setItem('token', auth.data.token);
     // console.log(auth.data.token);
-    const decoded = jwt(localStorage.getItem('token'));
+    // const decoded = jwt(localStorage.getItem('token'));
     // console.log(decoded);   
     yield put(push('/dashboard'));
 

@@ -19,6 +19,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import DashBoard from 'containers/DashBoard'
 import Testimonial from 'containers/Testimonial'
+import Profile from '../DashBoard/profile'
 
 import GlobalStyle from '../../global-styles';
 
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/features" component={FeaturePage} />
         <Route path="/login" component={LoginContainer} />
         <Route path="/dashboard" component={DashBoard} />
+        <Route path="/profile" component={Profile} />
         <Route path="/testomonial" component={Testimonial} />
         <Route path="" component={NotFoundPage} />
       </Switch>
