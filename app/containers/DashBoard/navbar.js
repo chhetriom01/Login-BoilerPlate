@@ -21,23 +21,16 @@ class NavBar extends React.Component {
     };
   }
   handleProfile = () => {
-    return (
-      console.log(decoded.user.username)
-      
-    )
+    return {}
   };
-  handleItemClick = () => {
-    window.location.href = '/dashboard';
-  };
+  
 
   handleLogout = () => {
     localStorage.removeItem('token');
     this.props.dispatch(push('/'));
   };
 
-  handleTesto() {
-    window.location.href = '/testomonial';
-  }
+  
   render() {
     if (this.state.loggedIn === false) {
       return <Redirect to="/" />;
@@ -47,11 +40,14 @@ class NavBar extends React.Component {
       <div>
         <Menu pointing secondary>
           <Menu.Item
+          as={Link} to="/dashboard"
             name="home"
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
+          as={Link} to="/testomonial"
+          name="home"
             name="Testimonial"
             active={activeItem === 'Testimonial'}
             onClick={this.handleTesto}
