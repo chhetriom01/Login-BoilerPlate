@@ -7,28 +7,19 @@ import { connect } from 'react-redux';
 // console.log(decoded, 'from decoder');
 
 class profile extends React.Component {
-  userName() {
-    return this.props.map(om => {
-      // console.log(om.success)
-      return <li>{om.success}</li>;
-    });
-  }
   render() {
     return (
       <div>
         <Navbar />
         hello profile
-                 {this.userName}
       </div>
     );
   }
 }
-function mapStateToProps(state) {
-  console.log('from profile', weather)
+function mapStateToProps(weather) {
+  console.log('from profile', weather);
   return {
-    
-    weather: state.weather,
-    
+    weather
   };
 }
-export default connect()(profile);
+export default connect(mapStateToProps)(profile);
