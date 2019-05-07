@@ -22,7 +22,7 @@ function* fetchData(action) {
     // console.log(auth.data.token);
     const decoded = jwt(localStorage.getItem('token'));
     // console.log(decoded);   
-    yield put(push('/path'));
+    yield put(push('/dashboard'));
 
     console.log(auth.data.userInfo.active);
   } catch (error) {

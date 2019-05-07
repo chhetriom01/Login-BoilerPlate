@@ -41,10 +41,10 @@ export default function App() {
       </Helmet>
       
       <Switch>
-        <Route exact path="/" component={LoginContainer} />
+        <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
         <Route path="/login" component={LoginContainer} />
-        <Route path="/path" component={DashBoard} />
+        <Route path="/dashboard" component={DashBoard} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       {/* <Footer /> */}

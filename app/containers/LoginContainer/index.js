@@ -24,20 +24,14 @@ class LoginContainer extends Component {
       credentials: {
         username: 'superadmin',
         password: 'superadmin@123',
-        loggedIn : false
+        
       },
     };
   }
   handleSubmit = e => {
     e.preventDefault();
     this.props.dispatch(loginRequest(this.state.credentials));
-    const { username, password } = this.state;
-    if (username === 'superadmin' && password === 'superadmin@123') {
-      localStorage.getItem('token')
-      this.setState({
-        loggedIn: true
-      });
-    }
+   
   };
   onInputChange = e => {
     const field = event.target.name;
@@ -55,10 +49,7 @@ class LoginContainer extends Component {
     });
   };
   render() {
-    if (this.state.loggedIn) {
-      return <Redirect to="/path" />;
-    }
-
+ 
     return (
       <div className="ui input focus">
         <Form onSubmit={this.handleSubmit}>
