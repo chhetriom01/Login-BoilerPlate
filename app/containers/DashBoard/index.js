@@ -22,12 +22,14 @@ import { Menu, Segment } from 'semantic-ui-react';
 import { push } from 'connected-react-router';
 import NavBar from './navbar';
 import { Redirect, Link } from 'react-router-dom';
+import Testimonial from '../Testimonial/index';
 
 class DashBoard extends React.Component {
   render() {
     return (
       <div>
         <NavBar />
+        <h1>  WELCOME TO DASHBOARD</h1>
       </div>
     );
   }

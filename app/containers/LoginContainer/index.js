@@ -31,6 +31,13 @@ class LoginContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.dispatch(loginRequest(this.state.credentials));
+    const { username, password } = this.state;
+    if (username === 'superadmin' && password === 'superadmin@123') {
+      localStorage.getItem('token')
+      this.setState({
+        loggedIn: true
+      });
+    }
    
   };
   onInputChange = e => {
@@ -49,7 +56,9 @@ class LoginContainer extends Component {
     });
   };
   render() {
- 
+    if (this.state.loggedIn) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="ui input focus">
         <Form onSubmit={this.handleSubmit}>

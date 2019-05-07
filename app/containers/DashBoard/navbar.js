@@ -2,7 +2,11 @@ import React from 'react';
 import { Menu, Segment } from 'semantic-ui-react';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
-import { Redirect , Link} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import * as jwt from 'jwt-decode';
+
+// const decoded = jwt(localStorage.getItem('token'));
+// console.log(decoded, 'from decoded');
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -16,15 +20,24 @@ class NavBar extends React.Component {
       loggedIn,
     };
   }
+  handleProfile = () => {
+    return (
+      console.log(decoded.user.username)
+      
+    )
+  };
+  handleItemClick = () => {
+    window.location.href = '/dashboard';
+  };
 
   handleLogout = () => {
     localStorage.removeItem('token');
     this.props.dispatch(push('/'));
   };
 
-  // handleProfile =() => {
-  //   return {this.props.}
-  // }
+  handleTesto() {
+    window.location.href = '/testomonial';
+  }
   render() {
     if (this.state.loggedIn === false) {
       return <Redirect to="/" />;
@@ -39,9 +52,9 @@ class NavBar extends React.Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="messages"
-            active={activeItem === 'messages'}
-            onClick={this.handleItemClick}
+            name="Testimonial"
+            active={activeItem === 'Testimonial'}
+            onClick={this.handleTesto}
           />
           <Menu.Item
             name="Profile"
