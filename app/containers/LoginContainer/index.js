@@ -24,21 +24,12 @@ class LoginContainer extends Component {
       credentials: {
         username: 'superadmin',
         password: 'superadmin@123',
-        
       },
     };
   }
   handleSubmit = e => {
     e.preventDefault();
     this.props.dispatch(loginRequest(this.state.credentials));
-    const { username, password } = this.state;
-    if (username === 'superadmin' && password === 'superadmin@123') {
-      localStorage.getItem('token')
-      this.setState({
-        loggedIn: true
-      });
-    }
-   
   };
   onInputChange = e => {
     const field = event.target.name;
@@ -89,7 +80,6 @@ class LoginContainer extends Component {
           <Button onClick={this.resetvalue}>Reset</Button>
         </Form>
       </div>
-      // <Route path="/path" component={DashBoard} />
     );
   }
 }
@@ -101,9 +91,6 @@ const withSaga = injectSaga({ key: 'LoginContainer', saga });
 //   return bindActionCreators({ loginRequest }, dispatch);
 // }
 
-// const mapDispatchToProps = dispatch => ({
-//   login: credentials => dispatch(loginRequest(credentials)),
-// });
 
 const mapStateToProps = createStructuredSelector({
   loginContainer: makeSelectLoginContainer(),

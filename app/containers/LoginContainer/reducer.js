@@ -1,8 +1,4 @@
-/*
- *
- * LoginContainer reducer
- *
- */
+
 import produce from 'immer';
 import { LOGIN_REQUESTING, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
 import { retry } from '@redux-saga/core/effects';
@@ -20,9 +16,8 @@ const loginContainerReducer = (state = initialState, action) => {
     case 'LOGIN_REQUESTING':
       return { ...state, Loading: true };
     case 'LOGIN_SUCCESS':
-      // localStorage.setItem('token', action.json.data.token);
-      console.log(action);
-      return { ...state, Loading: false };
+           console.log(action.json.data,"from reducers");
+      return { ...state,man:action.json.data, Loading: false };
       
 
     case 'LOGIN_ERROR':

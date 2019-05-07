@@ -69,9 +69,17 @@ class NavBar extends React.Component {
     );
   }
 }
+
+// function mapStateToProps(state){
+//   return{
+//     weather: state.weather
+//   }
+// }
+
+
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
   };
 }
-export default connect()(NavBar);
+export default connect(mapDispatchToProps)(NavBar);
