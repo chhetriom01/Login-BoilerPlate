@@ -9,20 +9,20 @@ import { connect } from 'react-redux';
 
 class profile extends React.Component {
   render() {
+    console.log(this.props,">>>>>s")
     return (
       <div>
         <Navbar />
         hello profile
-        <h1>{this.props.manish.Loading}</h1>
-        
+        <h1>{this.props.token.value.userInfo.username}</h1>
       </div>
     );
   }
 }
-function mapStateToProps(manish) {
-  console.log('from profile', manish);
+function mapStateToProps(store) {
+  console.log('from profile', store);
   return {
-    manish,
+    token: store.manish,
   };
 }
 export default connect(mapStateToProps)(profile);

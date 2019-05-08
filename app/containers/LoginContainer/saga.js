@@ -3,6 +3,7 @@ import { isTemplateElement } from '@babel/types';
 import axios from 'axios';
 import messages from './messages';
 import { push } from 'react-router-redux';
+import * as type from './constants'
 import * as jwt from 'jwt-decode';
 
 function* fetchData(action) {

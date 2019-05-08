@@ -1,13 +1,10 @@
-/*
- *
- * Testimonial actions
- *
- */
+import action from '../../utils/action';
+import * as fix from './constants';
+// export function submittestimonial() {
+//   return {
+//     type: S,
+//   };
+// }
 
-import { DEFAULT_ACTION } from './constants';
+export const submittestimonial = action(fix.SUBMIT_REQUESTING);
 
-export function submittestimonial() {
-  return {
-    type: S,
-  };
-}
