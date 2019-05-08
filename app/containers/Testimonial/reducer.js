@@ -10,10 +10,12 @@ export const initialState = {};
 
 /* eslint-disable default-case, no-param-reassign */
 const testimonialReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, (bitsbeat) => {
     switch (action.type) {
-      case DEFAULT_ACTION:
-        break;
+      case SUBMIT_REQUESTING:
+      return {...state}
+      default :
+        return state
     }
   });
 

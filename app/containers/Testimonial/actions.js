@@ -1,13 +1,8 @@
-/*
- *
- * Testimonial actions
- *
- */
+import { SUBMIT_REQUESTING} from './constants'
 
-import { DEFAULT_ACTION } from './constants';
-
-export function defaultAction() {
+export function submittestimonial() {
   return {
-    type: DEFAULT_ACTION,
+    type: SUBMIT_REQUESTING,
+    data
   };
 }

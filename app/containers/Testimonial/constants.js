@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/Testimonial/DEFAULT_ACTION';
+export const SUBMIT_REQUESTING = 'SUBMIT_REQUESTING';

@@ -47,9 +47,7 @@ class LoginContainer extends Component {
     });
   };
   render() {
-    if (this.state.loggedIn) {
-      return <Redirect to="/" />;
-    }
+  
     return (
       <div className="ui input focus">
         <Form onSubmit={this.handleSubmit}>

@@ -20,29 +20,81 @@ import saga from './saga';
 import messages from './messages';
 import { Redirect, Link } from 'react-router-dom';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
-import NavBar from '../DashBoard/navbar'
+import NavBar from '../DashBoard/navbar';
 
 export class Testimonial extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        personName: 'Om Bahadur Chhetri ',
+        testimonialContent: 'Article',
+        organization: 'BitsBeat',
+        message: 'this is the message',
+      },
+    };
+  }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.dispatch(submittestimonial(this.state.data));
+  };
+
+  onInputChange = event => {
+    const field = event.target.name;
+    const data = this.state.data;
+    data[field] = event.target.value;
+    return this.setState({
+      data: data,
+    });
+  };
   render() {
     return (
       <div>
-      <NavBar />
-      <Form>
-        <Form.Group unstackable widths={2}>
-          <Form.Input label="Person Name" placeholder="personName" />
-        </Form.Group>
+        <NavBar />
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group unstackable widths={2}>
+            <Form.Input
+              label="Person Name"
+              placeholder="Enter personName"
+              name="personName"
+              value={this.state.data.personName}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
 
-        <Form.Group unstackable widths={2}>
-          <Form.Input label="Testimonial Content" placeholder="testimonialContent" />
-        </Form.Group>
-        <Form.Group widths={2}>
-          <Form.Input label="Organization" placeholder="organization" />
-        </Form.Group>
-        <Form.Group widths={2}>
-          <Form.Input label="Message" placeholder="message" />
-        </Form.Group>
-        <Button type="Submit">Submit</Button>
-      </Form>
+          <Form.Group unstackable widths={2}>
+            <Form.Input
+              label="Testimonial Content"
+              placeholder="testimonialContent"
+              name="testomonialContent"
+              value={this.state.data.testimonialContent}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group widths={2}>
+            <Form.Input
+              label="Organization"
+              placeholder="Name of organization"
+              name="Organization"
+              value={this.state.data.organization}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group widths={2}>
+            <Form.Input
+              label="Message"
+              placeholder="enter your message"
+              name="Message"
+              value={this.state.data.message}
+              onChange={this.onInputChange}
+              required
+            />
+          </Form.Group>
+          <Button type="Submit">Submit</Button>
+        </Form>
       </div>
     );
   }
@@ -56,16 +108,7 @@ const mapStateToProps = createStructuredSelector({
   testimonial: makeSelectTestimonial(),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps);
 
 export default compose(
   withConnect,
