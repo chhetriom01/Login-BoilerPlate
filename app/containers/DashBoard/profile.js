@@ -13,8 +13,10 @@ class profile extends React.Component {
     return (
       <div>
         <Navbar />
-        hello profile
-        <h1>{this.props.token.value.userInfo.username}</h1>
+      Name :
+        {this.props.token.value.userInfo.username}<br />
+        Your Role :
+        {this.props.token.value.userInfo.userRole}
       </div>
     );
   }
