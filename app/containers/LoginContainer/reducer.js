@@ -16,7 +16,7 @@ const loginContainerReducer = (state = initialState, action) => {
     case 'LOGIN_REQUESTING':
       return { ...state, Loading: true };
     case 'LOGIN_SUCCESS':
-           console.log(action.json,"from reducers");
+          //  console.log(action.json.data,"from reducers");
       return { value:action.json.data, Loading: false };
       
 

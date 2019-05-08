@@ -18,16 +18,13 @@ function* fetchData(action) {
     });
 
     yield put({ type: 'LOGIN_SUCCESS', json: auth });
-    // varlocalStorage.setItem('TOKEN', auth.data.token);
     localStorage.setItem('token', auth.data.token);
-    // console.log(auth.data.token);
-    // const decoded = jwt(localStorage.getItem('token'));
-    // console.log(decoded);   
-    // console.log(auth.data.userInfo.active);
+    
     yield put(push('/dashboard'));
   } catch (error) {
     console.log(error, 'from saga');
     yield put({ type: 'LOGIN_ERROR', payload: error });
+    yield put(push('/'))
   }
 }
 

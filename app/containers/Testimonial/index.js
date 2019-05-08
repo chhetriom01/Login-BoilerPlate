@@ -35,12 +35,14 @@ export class Testimonial extends React.Component {
       },
     };
   }
-  handleSubmit = e => {
+  handleSubmit = (e )=> {
     e.preventDefault();
+    console.log("Button pressed")
     this.props.dispatch(submittestimonial(this.state.data));
+    
   };
 
-  onInputChange = event => {
+  onInputChange = (event) => {
     const field = event.target.name;
     const data = this.state.data;
     data[field] = event.target.value;
@@ -68,7 +70,7 @@ export class Testimonial extends React.Component {
             <Form.Input
               label="Testimonial Content"
               placeholder="testimonialContent"
-              name="testomonialContent"
+              name="testimonialContent"
               value={this.state.data.testimonialContent}
               onChange={this.onInputChange}
               required
@@ -78,7 +80,7 @@ export class Testimonial extends React.Component {
             <Form.Input
               label="Organization"
               placeholder="Name of organization"
-              name="Organization"
+              name="organization"
               value={this.state.data.organization}
               onChange={this.onInputChange}
               required
@@ -88,7 +90,7 @@ export class Testimonial extends React.Component {
             <Form.Input
               label="Message"
               placeholder="enter your message"
-              name="Message"
+              name="message"
               value={this.state.data.message}
               onChange={this.onInputChange}
               required
@@ -101,9 +103,9 @@ export class Testimonial extends React.Component {
   }
 }
 
-Testimonial.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+// Testimonial.propTypes = {
+//   dispatch: PropTypes.func.isRequired,
+// };
 
 const mapStateToProps = createStructuredSelector({
   testimonial: makeSelectTestimonial(),

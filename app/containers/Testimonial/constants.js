@@ -1,6 +1,7 @@
 
 
 export const SUBMIT_REQUESTING = 'SUBMIT_REQUESTING';
+export const SUMIT_SUCCESS = 'SUBMIT_SUCCESS'
 
 
 // const mapStateToProps = state => {

@@ -3,28 +3,29 @@ import Navbar from './navbar';
 import * as jwt from 'jwt-decode';
 import { decode } from 'punycode';
 import { connect } from 'react-redux';
-// const decoded = jwt(localStorage.getItem('token'));
-// console.log(decoded, 'from decoder');
-
 
 class profile extends React.Component {
   render() {
-    console.log(this.props,">>>>>s")
+    const {
+      token,
+      userInfo: { username, _id, userRole },
+    } = this.props.data.LoginContainer.value;
     return (
       <div>
         <Navbar />
-      Name :
-        {this.props.token.value.userInfo.username}<br />
-        Your Role :
-        {this.props.token.value.userInfo.userRole}
+        Name :{username}
+        <br />
+        Your Role :{userRole}
+        <br />
+        Your Id :{_id}
       </div>
     );
   }
 }
-function mapStateToProps(store) {
-  console.log('from profile', store);
+function mapStateToProps(data) {
+  console.log('from profile', data);
   return {
-    token: store.manish,
+    data,
   };
 }
 export default connect(mapStateToProps)(profile);
