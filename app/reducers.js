@@ -8,7 +8,7 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import value from 'containers/LoginContainer/reducer';
+import bitsbeat from 'containers/LoginContainer/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -16,7 +16,7 @@ import value from 'containers/LoginContainer/reducer';
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
     global: globalReducer,
-    manish:value,
+    manish:bitsbeat,
     language: languageProviderReducer,
     router: connectRouter(history),
     ...injectedReducers,

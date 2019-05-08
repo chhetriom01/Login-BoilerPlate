@@ -1,8 +1,13 @@
-import { SUBMIT_REQUESTING} from './constants'
+/*
+ *
+ * Testimonial actions
+ *
+ */
+
+import { DEFAULT_ACTION } from './constants';
 
 export function submittestimonial() {
   return {
-    type: SUBMIT_REQUESTING,
-    data
+    type: S,
   };
 }

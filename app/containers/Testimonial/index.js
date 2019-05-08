@@ -21,6 +21,7 @@ import messages from './messages';
 import { Redirect, Link } from 'react-router-dom';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 import NavBar from '../DashBoard/navbar';
+import submittestimonial from './actions';
 
 export class Testimonial extends React.Component {
   constructor(props) {

@@ -14,6 +14,7 @@ class profile extends React.Component {
         <Navbar />
         hello profile
         <h1>{this.props.manish.Loading}</h1>
+        
       </div>
     );
   }
