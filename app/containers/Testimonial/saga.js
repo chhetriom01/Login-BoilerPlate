@@ -1,27 +1,31 @@
-import { takeLatest, put, call } from 'redux-saga/effects'
+import { takeLatest, put, all } from 'redux-saga/effects';
 import axios from 'axios';
-
-
 import { push } from 'connected-react-router';
-// Individual exports for testing
+
 function* testimonialSaga(action) {
+  console.log("hi i am fro saga")
   try {
-const push = yield axios ({
-    method: 'post',
-    url :'http://localhost:3000/api/testimonial',
-    data:{
+    const push = yield axios({
+      method: 'post',
+      url: 'http://localhost:3005/api/testimonial',
+      data: {
         personName: action.data.personName,
-        testimonial: action.data.testimonial,
+        testimonialContent: action.data.testimonialContent,
         organization: action.data.organization,
-        message: action.data.organization
-    }
-});
-yield put ({type:'SUBMIT_SUCCESS', json: push})
-// localStorage.setItem('token',auth.data.toke)
-consloe.log(push)
+        message: action.data.message,
+        token: localStorage.getItem("token"),
+      },
+    });
+    yield put({ type: 'SUBMIT_SUCCESS', json: push });
+    consloe.log('from saga hello om');
+    yield put(push('/dashboard'));
   } catch (error) {
     yield put({ type: 'SUBMIT_ERROR' });
   }
-
-  // See example in containers/HomePage/saga.js
+}
+function* actionWatcher() {
+  yield takeLatest('SUBMIT_REQUESTING', testimonialSaga);
+}
+export default function* rootsaga() {
+  yield all([actionWatcher()]);
 }

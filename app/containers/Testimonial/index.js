@@ -11,7 +11,8 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import makeSelectTestimonial from './selectors';
@@ -21,7 +22,7 @@ import messages from './messages';
 import { Redirect, Link } from 'react-router-dom';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 import NavBar from '../DashBoard/navbar';
-import {submittestimonial} from './actions';
+import { submittestimonial } from './actions';
 
 export class Testimonial extends React.Component {
   constructor(props) {
@@ -32,17 +33,17 @@ export class Testimonial extends React.Component {
         testimonialContent: 'Article',
         organization: 'BitsBeat',
         message: 'this is the message',
+        token: '',
       },
     };
   }
-  handleSubmit = (e )=> {
+  handleSubmit = e => {
     e.preventDefault();
-    console.log("Button pressed")
+
     this.props.dispatch(submittestimonial(this.state.data));
-    
   };
 
-  onInputChange = (event) => {
+  onInputChange = event => {
     const field = event.target.name;
     const data = this.state.data;
     data[field] = event.target.value;
@@ -51,6 +52,8 @@ export class Testimonial extends React.Component {
     });
   };
   render() {
+    // const { token } = this.props.data.manish.value;
+
     return (
       <div>
         <NavBar />
@@ -98,22 +101,28 @@ export class Testimonial extends React.Component {
           </Form.Group>
           <Button type="Submit">Submit</Button>
         </Form>
+        {/* {this.setState({data.token:})} */}
       </div>
     );
   }
 }
-
+const withReducer = injectReducer({ key: 'Testimonial', reducer });
+const withSaga = injectSaga({ key: 'Testimonial', saga });
 // Testimonial.propTypes = {
 //   dispatch: PropTypes.func.isRequired,
 // };
-
-const mapStateToProps = createStructuredSelector({
-  testimonial: makeSelectTestimonial(),
-});
+function mapStateToProps(data) {
+  console.log('from testimonial', data);
+  return {
+    data,
+  };
+}
 
 const withConnect = connect(mapStateToProps);
 
 export default compose(
+  withReducer,
+  withSaga,
   withConnect,
   memo,
 )(Testimonial);
