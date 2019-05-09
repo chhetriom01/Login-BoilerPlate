@@ -20,6 +20,7 @@ import Footer from 'components/Footer';
 import DashBoard from 'containers/DashBoard'
 import Testimonial from 'containers/Testimonial'
 import Profile from '../DashBoard/profile'
+import ListTestimonial from '../Testimonial/listTestimonial'
 
 import GlobalStyle from '../../global-styles';
 
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/dashboard" component={DashBoard} />
         <Route path="/profile" component={Profile} />
         <Route path="/testomonial" component={Testimonial} />
+        <Route path="/listTestimonial" component={ListTestimonial} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       {/* <Footer /> */}

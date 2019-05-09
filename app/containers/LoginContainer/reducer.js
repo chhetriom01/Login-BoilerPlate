@@ -14,7 +14,7 @@ export const initialState = {
 const loginContainerReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN_REQUESTING':
-    console.log(state,"from reudcer login request");
+    // console.log(state,"from reudcer login request");
       return { ...state, Loading: true };
     case 'LOGIN_SUCCESS':
       //  console.log(action.json.data,"from reducers");

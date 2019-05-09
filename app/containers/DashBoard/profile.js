@@ -3,8 +3,12 @@ import Navbar from './navbar';
 import * as jwt from 'jwt-decode';
 import { decode } from 'punycode';
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux'
+import {loginRequest} from '../LoginContainer/actions'
 
 class profile extends React.Component {
+
+
   render() {
     const {
       token,
@@ -28,4 +32,8 @@ function mapStateToProps(data) {
     data,
   };
 }
+// const mapDispatchToProps = dispatch => ({
+//   loginRequest: () => dispatch(loginRequest()),
+// })
+
 export default connect(mapStateToProps)(profile);

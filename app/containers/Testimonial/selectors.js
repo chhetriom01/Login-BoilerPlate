@@ -18,6 +18,7 @@ const selectTestimonialDomain = state => state.testimonial || initialState;
 const makeSelectTestimonial = () =>
   createSelector(
     selectTestimonialDomain,
+    
     substate => substate,
   );
 

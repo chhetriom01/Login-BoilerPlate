@@ -7,6 +7,7 @@ import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import { logger } from 'redux-logger';
 import createReducer from './reducers';
+import { autoRehydrate, persistStore } from 'redux-persist';
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
@@ -43,7 +44,7 @@ export default function configureStore(initialState = {}, history) {
     initialState,
     composeEnhancers(...enhancers),
   );
-
+  persistStore(store);
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry

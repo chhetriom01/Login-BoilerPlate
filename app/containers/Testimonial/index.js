@@ -20,9 +20,10 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Redirect, Link } from 'react-router-dom';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { Button, Checkbox, Form, Modal, Header } from 'semantic-ui-react';
 import NavBar from '../DashBoard/navbar';
-import { submittestimonial } from './actions';
+import { submittestimonial ,fetchRequesting} from './actions';
+import ListTestimonial from './listTestimonial';
 
 export class Testimonial extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export class Testimonial extends React.Component {
         message: 'this is the message',
         token: '',
       },
+      open: false,
     };
   }
   handleSubmit = e => {
@@ -51,68 +53,83 @@ export class Testimonial extends React.Component {
       data: data,
     });
   };
+
+  handleButton = (e) => {
+    e.preventDefault();
+this.props.dispatch(fetchRequesting());
+  }
+
+  show = dimmer => () => this.setState({ dimmer, open: true });
+  close = () => this.setState({ open: false });
+
   render() {
     // const { token } = this.props.data.manish.value;
-
+    const { open, dimmer } = this.state;
     return (
       <div>
         <NavBar />
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group unstackable widths={2}>
-            <Form.Input
-              label="Person Name"
-              placeholder="Enter personName"
-              name="personName"
-              value={this.state.data.personName}
-              onChange={this.onInputChange}
-              required
-            />
-          </Form.Group>
+        <Button onClick={this.show('blurring')}>AddTestimonial</Button>
 
-          <Form.Group unstackable widths={2}>
-            <Form.Input
-              label="Testimonial Content"
-              placeholder="testimonialContent"
-              name="testimonialContent"
-              value={this.state.data.testimonialContent}
-              onChange={this.onInputChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group widths={2}>
-            <Form.Input
-              label="Organization"
-              placeholder="Name of organization"
-              name="organization"
-              value={this.state.data.organization}
-              onChange={this.onInputChange}
-              required
-            />
-          </Form.Group>
-          <Form.Group widths={2}>
-            <Form.Input
-              label="Message"
-              placeholder="enter your message"
-              name="message"
-              value={this.state.data.message}
-              onChange={this.onInputChange}
-              required
-            />
-          </Form.Group>
-          <Button type="Submit">Submit</Button>
-        </Form>
-        {/* {this.setState({data.token:})} */}
+        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+          <Modal.Header>Post Testimonial</Modal.Header>
+
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group>
+              <Form.Input
+                label="Person Name"
+                placeholder="Enter personName"
+                name="personName"
+                value={this.state.data.personName}
+                onChange={this.onInputChange}
+                required
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Input
+                label="Testimonial Content"
+                placeholder="testimonialContent"
+                name="testimonialContent"
+                value={this.state.data.testimonialContent}
+                onChange={this.onInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Input
+                label="Organization"
+                placeholder="Name of organization"
+                name="organization"
+                value={this.state.data.organization}
+                onChange={this.onInputChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Input
+                label="Message"
+                placeholder="enter your message"
+                name="message"
+                value={this.state.data.message}
+                onChange={this.onInputChange}
+                required
+              />
+            </Form.Group>
+            <Button type="Submit">Submit</Button>
+          </Form>
+        </Modal>
+        {/* <Link to="/listTestimonial"> */}
+          <Button onClick ={this.handleButton}>ListTestimonial</Button>
+        {/* </Link> */}
       </div>
     );
   }
 }
 const withReducer = injectReducer({ key: 'Testimonial', reducer });
 const withSaga = injectSaga({ key: 'Testimonial', saga });
-// Testimonial.propTypes = {
-//   dispatch: PropTypes.func.isRequired,
-// };
+
 function mapStateToProps(data) {
-  console.log('from testimonial', data);
+  // console.log('from testimonial', data);
   return {
     data,
   };

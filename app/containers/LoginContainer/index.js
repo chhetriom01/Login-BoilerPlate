@@ -17,6 +17,7 @@ import { Button, Checkbox, Form } from 'semantic-ui-react';
 import { Link, browserHistory } from 'react-router';
 import { Redirect } from 'react-router-dom';
 
+
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -77,6 +78,7 @@ class LoginContainer extends Component {
           <Button type="submit">Submit</Button>
           <Button onClick={this.resetvalue}>Reset</Button>
         </Form>
+
       </div>
     );
   }
