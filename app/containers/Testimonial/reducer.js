@@ -19,8 +19,8 @@ const testimonialReducer = (state = initialState, action) => {
       console.log('from reducer of fetch_requesting');
       return {  ...state,Loading: true };
     case 'FETCH_SUCCESS':
-      // console.log(action.json.data.dataList[0].organization, 'from reducer of testimonial');
-      return { ...state,value:action.json.data, Loading: false };
+      console.log(action.json.data.dataList, 'from reducer of testimonial');
+      return { ...state,om:action.json.data.dataList, Loading: false };
     default:
       return state;
   }
