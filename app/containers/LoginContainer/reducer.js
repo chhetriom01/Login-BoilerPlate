@@ -3,7 +3,6 @@ import { LOGIN_REQUESTING, LOGIN_SUCCESS, LOGIN_ERROR } from './constants';
 import { retry } from '@redux-saga/core/effects';
 import payload from './saga';
 
-
 export const initialState = {
   Loading: false,
   data: [],
@@ -14,10 +13,10 @@ export const initialState = {
 const loginContainerReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN_REQUESTING':
-    // console.log(state,"from reudcer login request");
+      // console.log(state,"from reudcer login request");
       return { ...state, Loading: true };
     case 'LOGIN_SUCCESS':
-      //  console.log(action.json.data,"from reducers");
+      console.log(action, 'from reducers');
       return { value: action.json.data, Loading: false };
 
     case 'LOGIN_ERROR':

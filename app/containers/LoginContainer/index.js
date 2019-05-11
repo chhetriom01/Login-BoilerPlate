@@ -38,7 +38,7 @@ class LoginContainer extends Component {
     credentials[field] = event.target.value;
     return this.setState({ credentials: credentials });
   };
-
+  
   resetvalue = () => {
     this.setState({
       credentials: {
@@ -48,9 +48,10 @@ class LoginContainer extends Component {
     });
   };
   render() {
-  
+    
     return (
       <div className="ui input focus">
+      
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Username </label>
@@ -61,6 +62,7 @@ class LoginContainer extends Component {
               value={this.state.credentials.username}
               onChange={this.onInputChange}
               placeholder="Enter the username"
+              required
             />
           </Form.Field>
           <Form.Field>
@@ -72,6 +74,7 @@ class LoginContainer extends Component {
               value={this.state.credentials.password}
               onChange={this.onInputChange}
               placeholder="Enter the password"
+              required
             />
           </Form.Field>
 

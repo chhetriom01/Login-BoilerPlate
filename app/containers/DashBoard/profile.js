@@ -3,25 +3,28 @@ import Navbar from './navbar';
 import * as jwt from 'jwt-decode';
 import { decode } from 'punycode';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux'
-import {loginRequest} from '../LoginContainer/actions'
-
+import { bindActionCreators } from 'redux';
+import { loginRequest } from '../LoginContainer/actions';
+// import * as jwt from 'jwt-decode';
 class profile extends React.Component {
-
-
   render() {
-    const {
-      token,
-      userInfo: { username, _id, userRole },
-    } = this.props.data.LoginContainer.value;
+    const decoded = jwt(localStorage.getItem('token'));
+    console.log(decoded, "ajfn");
+    // const {
+    //   token,
+    //   userInfo: { username, _id, userRole },
+    // } = this.props.data.LoginContainer.value;
     return (
       <div>
         <Navbar />
-        Name :{username}
+        {/* Name :{username}<br /> */}
+        Name from decode :{decoded.user.username}
         <br />
-        Your Role :{userRole}
+        {/* Your Role :{userRole} */}
+        Your Role : {decoded.user.userRole}
         <br />
-        Your Id :{_id}
+        {/* Your Id :{_id} */}
+        
       </div>
     );
   }

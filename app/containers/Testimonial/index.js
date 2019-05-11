@@ -20,9 +20,9 @@ import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 import { Redirect, Link } from 'react-router-dom';
-import { Button, Checkbox, Form, Modal, Header } from 'semantic-ui-react';
+import { Button, Checkbox, Form, Modal, Header, Icon } from 'semantic-ui-react';
 import NavBar from '../DashBoard/navbar';
-import { submittestimonial ,fetchRequesting} from './actions';
+import { submittestimonial, fetchRequesting } from './actions';
 import ListTestimonial from './listTestimonial';
 
 export class Testimonial extends React.Component {
@@ -34,7 +34,7 @@ export class Testimonial extends React.Component {
         testimonialContent: 'Article',
         organization: 'BitsBeat',
         message: 'this is the message',
-        token: '',
+        
       },
       open: false,
     };
@@ -54,9 +54,20 @@ export class Testimonial extends React.Component {
     });
   };
 
-  handleButton = (e) => {
+  handleButton = e => {
     e.preventDefault();
-this.props.dispatch(fetchRequesting());
+    this.props.dispatch(fetchRequesting());
+  };
+  resetvalue = () => {
+this.setState({
+  data:{
+    personName: '',
+    testimonialContent: '',
+    organization: '',
+    message: '',
+  }
+
+})
   }
 
   show = dimmer => () => this.setState({ dimmer, open: true });
@@ -70,7 +81,7 @@ this.props.dispatch(fetchRequesting());
         <NavBar />
         <Button onClick={this.show('blurring')}>AddTestimonial</Button>
 
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={open} onClose={this.close} closeIcon>
           <Modal.Header>Post Testimonial</Modal.Header>
 
           <Form onSubmit={this.handleSubmit}>
@@ -116,11 +127,11 @@ this.props.dispatch(fetchRequesting());
               />
             </Form.Group>
             <Button type="Submit">Submit</Button>
+            <Button onClick={this.resetvalue}>Reset</Button>
           </Form>
         </Modal>
-        {/* <Link to="/listTestimonial"> */}
-          <Button onClick ={this.handleButton}>ListTestimonial</Button>
-        {/* </Link> */}
+
+        <Button onClick={this.handleButton}>ListTestimonial</Button>
       </div>
     );
   }

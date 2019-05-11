@@ -18,8 +18,8 @@ function* fetchData(action) {
     });
 
     yield put({ type: 'LOGIN_SUCCESS', json: auth });
+    // localStorage.setItem('token', auth.data.token);
     localStorage.setItem('token', auth.data.token);
-    
     yield put(push('/dashboard'));
   } catch (error) {
     console.log(error, 'from saga');

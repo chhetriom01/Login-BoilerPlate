@@ -15,6 +15,8 @@ const testimonialReducer = (state = initialState, action) => {
     case 'SUBMIT_SUCCESS':
       console.log(action, 'state from reducers testimonial');
       return { action, Loading: false };
+      case 'SUBMIT_ERROR' :
+      return {...state}
     case 'FETCH_REQUESTING':
       console.log('from reducer of fetch_requesting');
       return {  ...state,Loading: true };

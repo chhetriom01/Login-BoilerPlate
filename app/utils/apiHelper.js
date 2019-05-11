@@ -1,9 +1,9 @@
 import { call, put } from 'redux-saga/effects';
 import { API_BASE, FLIGHT_API_BASE } from 'containers/App/constants';
-import ObjectToFormData from './objectToFormData';
+// import ObjectToFormData from './objectToFormData';
 import { request, requestJSON } from './request';
-import { logoutSuccess } from 'containers/Login/actions';
-import invalidTokenHelper from 'utils/invalidTokenHelper';
+// import { logoutSuccess } from 'containers/Login/actions';
+// import invalidTokenHelper from 'utils/invalidTokenHelper';
 
 class API {
 	/**
@@ -30,7 +30,7 @@ class API {
 							'Content-Type': 'application/json',
 							'X-Requested-With': 'XMLHttpRequest',
 							'Access-Control-Allow-Origin': '*',
-							Authorization: token, //? `${usertoken}` : undefined
+							Authorization: z, //? `${usertoken}` : undefined
 						},
 					};
 				} else {
@@ -40,7 +40,7 @@ class API {
 							'Content-Type': 'application/json',
 							'X-Requested-With': 'XMLHttpRequest',
 							'Access-Control-Allow-Origin': '*',
-							Authorization: token, //? `${usertoken}` : undefined
+							Authorization: localStorage.getItem('token'), //? `${usertoken}` : undefined
 						},
 					};
 				}
