@@ -8,6 +8,7 @@ import createSagaMiddleware from 'redux-saga';
 import { logger } from 'redux-logger';
 import createReducer from './reducers';
 import { autoRehydrate, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage' 
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
@@ -42,9 +43,9 @@ export default function configureStore(initialState = {}, history) {
   const store = createStore(
     createReducer(),
     initialState,
-    composeEnhancers(...enhancers),
+    composeEnhancers(...enhancers)
   );
-  persistStore(store);
+  persistStore(store,{storage: localStorage.getItem('token')} );
   // Extensions
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry

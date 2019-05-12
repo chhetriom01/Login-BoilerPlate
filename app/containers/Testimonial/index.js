@@ -34,7 +34,6 @@ export class Testimonial extends React.Component {
         testimonialContent: 'Article',
         organization: 'BitsBeat',
         message: 'this is the message',
-        
       },
       open: false,
     };
@@ -59,16 +58,15 @@ export class Testimonial extends React.Component {
     this.props.dispatch(fetchRequesting());
   };
   resetvalue = () => {
-this.setState({
-  data:{
-    personName: '',
-    testimonialContent: '',
-    organization: '',
-    message: '',
-  }
-
-})
-  }
+    this.setState({
+      data: {
+        personName: '',
+        testimonialContent: '',
+        organization: '',
+        message: '',
+      },
+    });
+  };
 
   show = dimmer => () => this.setState({ dimmer, open: true });
   close = () => this.setState({ open: false });

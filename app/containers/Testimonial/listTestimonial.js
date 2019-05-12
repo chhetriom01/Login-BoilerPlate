@@ -12,15 +12,23 @@ import {
 import NavBar from '../DashBoard/navbar';
 import { connect } from 'react-redux';
 import './index.css';
+import { deleteRequesting } from './actions';
 import * as jwt from 'jwt-decode';
 
 class ListTestimonial extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: '5cd70d24208e8c0a284b5db4',
+    };
+  }
+
   handleClick = e => {
-    // this.props.dispatch(deleterequest())
+    this.props.dispatch(deleteRequesting(this.state.id));
   };
   render() {
     const decoded = jwt(localStorage.getItem('token'));
-    console.log(decoded, 'tokenagaldfaldfja;');
+    // console.log(decoded, 'tokenagaldfaldfja;');
     return (
       <div style={{ padding: '30px' }}>
         <NavBar />
@@ -42,7 +50,7 @@ class ListTestimonial extends React.Component {
                   <Button basic color="green">
                     Edit
                   </Button>
-                  <Button basic color="red" onClick={this.handleClick()}>
+                  <Button basic color="red" onClick={this.handleClick}>
                     Delete
                   </Button>
                 </div>
